@@ -1,5 +1,5 @@
 SELECT Code AS "코드", Name AS "이름", Population AS "인구" FROM country;
-
+SELECT Code MyCode, Name MyName, Population MyPopulation FROM country; -- 똑같이 별명짓는 행동가능. 보기 힘들어서 잘 안씀
 -- 위의 조회 + SurfaceArea(별명 면적) 컬럼을 추가로 조회
 SELECT Code AS "코드", Name AS "이름", Population AS "인구", SurfaceArea AS "면적" FROM country;
 -- 연산결과도 나옴. 
