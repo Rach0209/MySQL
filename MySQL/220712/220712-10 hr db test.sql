@@ -12,6 +12,7 @@ SELECT * FROM employees WHERE First_Name = 'John';
 SELECT * FROM employees WHERE Last_Name LIKE '%John%';
 -- 직원 테이블의 이름의 값이 6글자인 직원 조회
 SELECT * FROM employees WHERE First_Name LIKE '______';
+SELECT * FROM employees WHERE char_length(First_Name) = 6; -- char_length(Column이름) MySQL에서 글자 수를 세어주는 함수.
 -- 직원 테이블 Salary(연봉) 열의 값이 10000이상 ~ 15000이하인 직원 조회
 SELECT * FROM employees WHERE Salary BETWEEN 10000 AND 15000;
 -- 직원 테이블의 이름, 성, 연봉 컬럼과 연봉의 6%를 연산하여 'tax'라는 별명으로 조회하세요.
