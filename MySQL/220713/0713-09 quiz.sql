@@ -1,7 +1,7 @@
 SELECT * FROM employees;
 -- 각 직원들의 이름과 연봉, 평균연봉과의 차(연봉 - 평균연봉)를 조회해보세요.alter
 SELECT AVG(SALARY) AS '평균연봉' FROM employees;
-SELECT FIRST_NAME, SALARY, (SALARY - 6461.682243) AS '평균연봉과의 차' FROM employees;
+SELECT FIRST_NAME, SALARY, (SALARY - (SELECT AVG(SALARY) FROM employees)) AS '평균연봉과의 차' FROM employees;
 -- 최고 연봉직원과 최저 연봉직원들의 이름을 조회해보세요.
 SELECT MAX(SALARY) FROM employees;
 SELECT MIN(SALARY) FROM employees;
