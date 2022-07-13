@@ -1,6 +1,6 @@
 -- Ctrl + Shift + Enter : 전체 실행
 -- Ctrl + Enter : 한 줄 실행
-SHOW DATABASES; -- 데이터 목록 보기
+SHOW DATABASES; -- 데이터 목록 보기. 구조를 확인할 수 있다.
 
 USE world; -- 데이터베이스 world를 사용하겠다.
 
