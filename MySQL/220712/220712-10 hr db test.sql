@@ -1,5 +1,6 @@
 -- hr 데이터 베이스 사용하기 명령어 작성
 USE hr;
+-- hr 데이터 베이스의 테이블 목록 보기
 show tables;
 -- employees(직원) 테이블의 구조(어떤한 컬럼이 있는지)를 조회해보세요.
 DESCRIBE employees;
