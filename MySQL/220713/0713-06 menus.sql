@@ -44,5 +44,6 @@ WHERE MenuId <> 1 AND MenuId <> 2 AND MenuId <> 3;
 -- 값을 다른 테이블에 연관 시키기.
 -- 외래 키 (FOREIGN KEY) : 다른 테이블에 있는 키를 참조하는 키 값.
 -- ADD CONSTRAINT '외래키의 이름' FOREIGN KEY  이름은 생략 가능. 보통 fk_Menus_restrants~~식으로 설정함
+-- ADD CONSTRAINT FOREIGN KEY (컬럼 추가하여 외래키로 쓸 컬럼이름) REFERENCES 테이블이름 (컬럼이름)
 ALTER TABLE Menus ADD CONSTRAINT FOREIGN KEY (RestId) REFERENCES Restaurants (RestaurantId);
 DESC Menus;

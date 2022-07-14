@@ -12,7 +12,10 @@ SELECT * FROM employees WHERE SALARY > (SELECT AVG(SALARY) FROM employees);
 -- 부서명이 IT로 시작하는 직원들의 수(카운트)를 조회해보세요.
 SELECT * FROM departments;
 SELECT * FROM departments WHERE DEPARTMENT_NAME LIKE 'IT%';
-SELECT COUNT(*) AS '부서명이 IT로 시작하는 직원 수' FROM departments WHERE DEPARTMENT_NAME LIKE 'IT%';
+SELECT COUNT(*) AS '부서명이 IT로 시작하는 직원 수' FROM employees WHERE DEPARTMENT_ID IN 
+( 
+	SELECT DEPARTMENT_ID FROM departments WHERE DEPARTMENT_NAME LIKE 'IT%'
+);
 -- Douglas Grant의 이메일을 'dog@naver.com'으로 변경해보세요.
 SELECT EMAIL FROM employees WHERE FIRST_NAME = 'Douglas' AND LAST_NAME = 'Grant';
 UPDATE employees
@@ -21,6 +24,7 @@ WHERE FIRST_NAME = 'Douglas' AND LAST_NAME = 'Grant';
 -- Ellen Abel과 같은 부서에서 근무하는 직원을 연봉 내림차순으로 정렬해서 조회
 SELECT * FROM employees WHERE FIRST_NAME = 'Ellen';
 SELECT * FROM employees WHERE DEPARTMENT_ID = 80 ORDER BY SALARY DESC;
+SELECT * FROM employees WHERE DEPARTMENT_ID = (SELECT DEPARTMENT_ID FROM employees WHERE FIRST_NAME = 'Ellen') ORDER BY SALARY DESC;
 -- 부서명이 IT로 시작하는 부서에서 근무하는 최고연봉자보다 높은 연봉을 받는 직원 목록을 연봉 오름차순으로 조회
 SELECT * FROM departments WHERE DEPARTMENT_NAME LIKE 'IT%'; -- 60, 210, 230
 SELECT * FROM employees WHERE DEPARTMENT_ID IN
@@ -31,11 +35,12 @@ SELECT MAX(SALARY) FROM employees WHERE DEPARTMENT_ID IN
 ( -- 부서명이 IT로 시작하는 부서에서 근무하는 사람들의 최고연봉
 	SELECT DEPARTMENT_ID FROM departments WHERE DEPARTMENT_NAME LIKE 'IT%'
 );
+-- 최종 답안
 SELECT * FROM employees WHERE SALARY > (
 	SELECT MAX(SALARY) FROM employees WHERE DEPARTMENT_ID IN
-( -- 부서명이 IT로 시작하는 부서에서 근무하는 사람들의 최고연봉
-	SELECT DEPARTMENT_ID FROM departments WHERE DEPARTMENT_NAME LIKE 'IT%'
-)
+	( 
+		SELECT DEPARTMENT_ID FROM departments WHERE DEPARTMENT_NAME LIKE 'IT%'
+	)
 ) ORDER BY SALARY ASC;
 -- 자기가 속한 부서의 평균연봉보다 많은 연봉을 받는 직원
 SELECT * FROM departments;
