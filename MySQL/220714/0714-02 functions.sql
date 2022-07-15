@@ -1,8 +1,11 @@
 SELECT  * FROM employees;
--- 공백 제거해주는 TRIM. 글자 사이에 있는 공백 제거는 불가능. 왼쪽, 오른쪽, 양쪽 가능.
+-- SQL : 문자열, 숫자(정수, 실수), 고정길이(문자, 숫자), 등등 존재
+-- (특히 고정길이 문자열 사용시 CHAR())공백 제거해주는 TRIM. 글자 사이에 있는 공백 제거는 불가능. 왼쪽, 오른쪽, 양쪽 가능.
 SELECT RTRIM('a      '); -- 오른쪽 공백 제거
 SELECT LTRIM('     a     '); -- 왼쪽 공백 제거
 SELECT TRIM('      a      '); -- 양쪽 공백 제거
+-- SQL의 종류에 따라 TRIM의 적용이 우측이나, 왼쪽만 되는 경우가 있다.
+
 
 -- 대소문자 변환
 SELECT LOWER('ABCDE'); -- 소문자로 변환
@@ -23,22 +26,22 @@ SELECT REPLACE('원본 문자열에서 변환합니다', '변환', 'REPLACE');
 SELECT REPLACE(1234, '1', '5');
 SELECT REPLACE(12341, '1', '5'); -- 모든 '1'이 '5'로 변환
 
--- 문자열 자르기. 순서는 java(index가 0부터 시작)와 다르게, '1부터 시작'
+-- 문자열 자르기. 순서는 java(index가 0부터 시작)와 다르게, ***** '1부터 시작', '음수 지원' *****
 -- 5번째부터 1개 순서
 SELECT SUBSTRING('employees', 5); -- 문자열, 자를 시작 위치
 SELECT SUBSTRING('employees', 5, 2); -- 문자열, 자를 시작 위치, 개수
 SELECT SUBSTRING('employees', -3); -- 음수일 때 우측에서부터 위치를 세어나감
 SELECT SUBSTRING('employees', -3, 2);
 
--- CONCAT과 비슷한데, 총 길이수를 제한할 수 있다.
+-- CONCAT과 비슷한데, 총 길이수를 제한할 수 있다. -> 특정한 길이의 문자열을 만들 때
 -- (기본문자, 자릿수, 붙일문자열);
 SELECT LPAD("123", 5, "0");
 SELECT RPAD("456", 5, "*");
 SELECT RPAD(456, 5, 456);
 -- 반복 결합
-SELECT REPEAT("반복결합", 3);
+SELECT REPEAT("반복결합", 3); -- REPEAT는 반복을 위한 키워드도 있어서 <<< 왼쪽에 하나로 묶어주는 줄이 생겼음.
 
--- 글자의 위치를 찾기 1부터 시작임
+-- 글자의 위치를 찾기 1부터 시작임 ** JAVA의 indexOf();
 SELECT LOCATE('D', 'ABCDEFG');
 SELECT LOCATE('위치', '문자열의 위치를 찾는데 SQL의 문자 순서는 1부터임!!');
 SELECT LOCATE('.', "515.123.4567", 5); -- 시작점을 주면, 시작점에서부터 계산한다. 반환 숫자는 총 길이에서 위치하는 값.

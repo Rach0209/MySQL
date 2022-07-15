@@ -18,11 +18,10 @@ SELECT DEPARTMENT_ID, MAX(SALARY), MIN(SALARY), AVG(SALARY), SUM(SALARY)
 FROM employees 
 GROUP BY DEPARTMENT_ID;
 
-
 -- JOB_ID의 젤 위에 존재하는 값의 LAST_NAME 1개만 조회
 SELECT JOB_ID, LAST_NAME FROM employees GROUP BY JOB_ID;
 -- 중복 제거 -- 'DISTINCT'
--- 행의 값이 내가 조회하고자하는 모든 값이 나옴, 중복 제거 
+-- 행의 값이 내가 조회하고자하는 모든 값이 같아야 중복으로 처리 => 중복 제거 
 -- JOB_ID에 존재하는 LAST_NAME의 모두가 나옴 106개
 SELECT DISTINCT JOB_ID, LAST_NAME FROM employees;
 
@@ -51,7 +50,8 @@ SELECT * FROM employees WHERE LAST_NAME IN (
     GROUP BY LAST_NAME
     HAVING COUNT(*) > 1
 );
-
+-- 급여 중복제거 목록 57row
+SELECT DISTINCT SALARY FROM employees ORDER BY SALARY;
 -- 5번째로 적게 받는 직원들 목록
 -- SALARY 중복제거 후, 4칸 건너띄면 5번째 연봉
 SELECT * FROM employees 
@@ -59,4 +59,10 @@ WHERE SALARY = (SELECT DISTINCT SALARY FROM employees ORDER BY SALARY LIMIT 1 OF
 
 -- 상위 연봉 50명(같은 연봉에 대해서 이름이 빠른친구)에 대해서 부서별로 몇 명씩 있는지?
 SELECT * FROM employees;
-SELECT DEPARTMENT_ID, COUNT(*) FROM (SELECT * FROM employees ORDER BY SALARY DESC, FIRST_NAME ASC LIMIT 50) AS GIVEMEMORE GROUP BY DEPARTMENT_ID;
+SELECT DEPARTMENT_ID, COUNT(*) 
+ FROM
+	(SELECT * FROM employees 
+		ORDER BY SALARY DESC, FIRST_NAME ASC 
+        LIMIT 50)
+	AS GIVEMEMORE
+	GROUP BY DEPARTMENT_ID;

@@ -1,13 +1,15 @@
--- CASE WHEN '조건식' THEN '참일 때 값' ELSE '거짓일 때 값' END키워드로 종료 // 끝을 알려주어야 함
+-- CASE WHEN '조건식' THEN '참일 때 값' ELSE '거짓일 때 값' *** 'END' 키워드로 종료 ***// 끝을 알려주어야 함
+-- JAVA의 if절
 SELECT CASE WHEN 10 > 5 THEN '왼쪽이 오른쪽보다 큽니다'
 			ELSE '왼쪽이 오른쪽보다 작거나 같습니다'
 			END;
-            
+-- ELSE절이 없으면 NULL값; ELSE절을 만들어주는게 좋음.
 SELECT CASE WHEN 10 > 5 THEN "왼쪽"
 			WHEN 10 = 5 THEN "같음"
             WHEN 10 < 5 THEN "오른쪽"
             END AS '비교';
-            
+-- Java의 else if 절처럼 여러 개를 검사하기.
+
 -- 기대 수명이 0이면 0 대신 0.0으로 조회
 USE world;
 SELECT Name
